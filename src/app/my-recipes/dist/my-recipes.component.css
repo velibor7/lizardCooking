@@ -1,0 +1,13 @@
+.main-container {
+  width: 70%;
+  height: 100vh;
+  background-color: #fff;
+  box-shadow: black 0em 0.2em 0.4em;
+  align-items: center;
+  align-self: center;
+  margin: 0 auto;
+}
+
+.main-container .recipe .title {
+  font-size: 1.4em;
+}
