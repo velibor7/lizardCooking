@@ -9,7 +9,11 @@ exports.__esModule = true;
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var my_recipes_component_1 = require("./my-recipes/my-recipes.component");
-var routes = [{ path: "", component: my_recipes_component_1.MyRecipesComponent }];
+var create_recipe_component_1 = require("./recipes/create-recipe/create-recipe.component");
+var routes = [
+    { path: "", component: my_recipes_component_1.MyRecipesComponent },
+    { path: "submitrecipe", component: create_recipe_component_1.CreateRecipeComponent },
+];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
     }

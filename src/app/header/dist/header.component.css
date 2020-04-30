@@ -18,6 +18,7 @@
   font-family: "Tangerine", sans-serif;
   font-size: 2em;
   align-items: center;
+  cursor: pointer;
 }
 
 .header-container nav {
@@ -38,4 +39,9 @@
 
 .header-container nav ul li a {
   text-decoration: none;
+}
+
+.header-container .button {
+  cursor: pointer;
+  height: 2em;
 }

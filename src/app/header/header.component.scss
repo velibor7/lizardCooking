@@ -16,6 +16,7 @@
     font-family: "Tangerine", sans-serif;
     font-size: 2em;
     align-items: center;
+    cursor: pointer;
   }
   nav {
     margin: 0;
@@ -33,5 +34,10 @@
         padding: 0.3em;
       }
     }
+  }
+
+  .button {
+    cursor: pointer;
+    height: 2em;
   }
 }
