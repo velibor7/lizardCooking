@@ -22,13 +22,18 @@ var RecipesService = /** @class */ (function () {
         return this.recipes.slice();
     };
     RecipesService.prototype.add = function (title, description, isVegan) {
+        //  const recipeData = new FormData();
         var _this = this;
-        var recipeData = new FormData();
-        recipeData.append("title", title);
-        recipeData.append("description", description);
-        recipeData.append("isVegan", JSON.stringify(isVegan));
+        // recipeData.append("title", title);
+        //recipeData.append("description", description);
+        //recipeData.append("isVegan", JSON.stringify(isVegan));
+        // console.log(recipeData);
         this.http
-            .post("http://localhost:3000/api/recipes", recipeData)
+            .post("http://localhost:3000/api/recipes", {
+            title: title,
+            description: description,
+            isVegan: JSON.stringify(isVegan)
+        })
             .subscribe(function (responseData) {
             console.log(responseData);
             _this.router.navigate(["/"]);

@@ -43,18 +43,19 @@ const storage = multer.diskStorage({
 router.post("", // checkAuth,
 // multer({ storage: storage }).single("image"),
 function (req, res, next) {
-  var url = req.protocol + "://" + req.get("host");
+  var url = req.protocol + "://" + req.get("host"); // console.log(req);
+
   var recipe = new Recipe({
     title: req.body.title,
-    description: req.body.description // isVegan: req.body.isVegan,
-
+    description: req.body.description,
+    isVegan: req.body.isVegan === "true"
   });
-  console.log("\nthis recipe is added to db: ");
+  console.log("\nthis recipe will be added to db: ");
   console.log(recipe);
   recipe.save().then(function (createdRecipe) {
     res.status(201).json({
       message: "recipe added sucessfuly",
-      post: _objectSpread({}, createdRecipe, {
+      recipe: _objectSpread({}, createdRecipe, {
         id: createdRecipe._id
       })
     });

@@ -39,17 +39,18 @@ router.post(
   // multer({ storage: storage }).single("image"),
   (req, res, next) => {
     const url = req.protocol + "://" + req.get("host");
+    // console.log(req);
     const recipe = new Recipe({
       title: req.body.title,
       description: req.body.description,
-      // isVegan: req.body.isVegan,
+      isVegan: req.body.isVegan === "true",
     });
-    console.log("\nthis recipe is added to db: ");
+    console.log("\nthis recipe will be added to db: ");
     console.log(recipe);
     recipe.save().then((createdRecipe) => {
       res.status(201).json({
         message: "recipe added sucessfuly",
-        post: {
+        recipe: {
           ...createdRecipe,
           id: createdRecipe._id,
         },

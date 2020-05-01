@@ -24,16 +24,22 @@ export class RecipesService {
   }
 
   add(title: string, description: string, isVegan: boolean) {
-    const recipeData = new FormData();
+    //  const recipeData = new FormData();
 
-    recipeData.append("title", title);
-    recipeData.append("description", description);
-    recipeData.append("isVegan", JSON.stringify(isVegan));
+    // recipeData.append("title", title);
+    //recipeData.append("description", description);
+    //recipeData.append("isVegan", JSON.stringify(isVegan));
+
+    // console.log(recipeData);
 
     this.http
       .post<{ message: string; recipe: Recipe }>(
         "http://localhost:3000/api/recipes",
-        recipeData
+        {
+          title: title,
+          description: description,
+          isVegan: JSON.stringify(isVegan),
+        }
       )
       .subscribe((responseData) => {
         console.log(responseData);

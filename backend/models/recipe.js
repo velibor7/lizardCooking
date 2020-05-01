@@ -5,7 +5,7 @@ const recipeSchema = mongoose.Schema({
   description: { type: String, required: true },
   // ingredients : {type: String, required: true},
   // imagePath : {},
-  // isVegan: { type: Boolean, default: false },
+  isVegan: { type: Boolean, default: false },
   // creatorData : {},
 });
 

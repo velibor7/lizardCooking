@@ -8,10 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var my_recipes_component_1 = require("./my-recipes/my-recipes.component");
 var create_recipe_component_1 = require("./recipes/create-recipe/create-recipe.component");
+var recipe_list_component_1 = require("./recipes/recipe-list/recipe-list.component");
 var routes = [
-    { path: "", component: my_recipes_component_1.MyRecipesComponent },
+    { path: "", component: recipe_list_component_1.RecipeListComponent },
     { path: "submitrecipe", component: create_recipe_component_1.CreateRecipeComponent },
 ];
 var AppRoutingModule = /** @class */ (function () {
