@@ -10,6 +10,7 @@ import { FormGroup, FormControl } from "@angular/forms";
 })
 export class CreateRecipeComponent implements OnInit, OnDestroy {
   form: FormGroup;
+  imagePreview: string;
   // recipeSub: Subscription;
 
   constructor(private recipeService: RecipesService) {}
@@ -19,6 +20,7 @@ export class CreateRecipeComponent implements OnInit, OnDestroy {
       title: new FormControl(null),
       description: new FormControl(null),
       isvegan: new FormControl(false),
+      image: new FormControl(null),
     });
   }
 
@@ -29,6 +31,17 @@ export class CreateRecipeComponent implements OnInit, OnDestroy {
       this.form.value.description,
       this.form.value.isvegan
     );
+  }
+
+  onImagePicked(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.form.patchValue({ image: file });
+    this.form.get("image").updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+    };
+    reader.readAsDataURL(file);
   }
 
   ngOnDestroy() {

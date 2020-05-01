@@ -17,12 +17,24 @@ var CreateRecipeComponent = /** @class */ (function () {
         this.form = new forms_1.FormGroup({
             title: new forms_1.FormControl(null),
             description: new forms_1.FormControl(null),
-            isvegan: new forms_1.FormControl(false)
+            isvegan: new forms_1.FormControl(false),
+            image: new forms_1.FormControl(null)
         });
     };
     CreateRecipeComponent.prototype.onSaveRecipe = function () {
         // console.log(this.form.value);
         this.recipeService.add(this.form.value.title, this.form.value.description, this.form.value.isvegan);
+    };
+    CreateRecipeComponent.prototype.onImagePicked = function (event) {
+        var _this = this;
+        var file = event.target.files[0];
+        this.form.patchValue({ image: file });
+        this.form.get("image").updateValueAndValidity();
+        var reader = new FileReader();
+        reader.onload = function () {
+            _this.imagePreview = reader.result;
+        };
+        reader.readAsDataURL(file);
     };
     CreateRecipeComponent.prototype.ngOnDestroy = function () {
         // this.recipeSub.unsubscribe();

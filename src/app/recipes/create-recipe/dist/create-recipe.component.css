@@ -12,3 +12,12 @@
 .create-container .button {
   cursor: pointer;
 }
+
+.hidden-input {
+  display: none;
+}
+
+.image-preview img {
+  width: 14em;
+  height: auto;
+}

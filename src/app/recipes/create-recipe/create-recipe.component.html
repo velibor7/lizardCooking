@@ -1,9 +1,32 @@
 <!-- <div class="create-container"> -->
-  <form [formGroup]="form" action="" (submit)="onSaveRecipe()" class="create-container">
-    <div><input formControlName="isvegan" type="checkbox" name="vegan"><label for="vegan">Vegan</label></div>
-    <input formControlName="title" name="title" type="text" class="title" placeholder="Title" />
-    <input type="text" placeholder="Ingridients" /> IDK will have to work on this
-    <textarea
+<form
+  [formGroup]="form"
+  action=""
+  (submit)="onSaveRecipe()"
+  class="create-container"
+>
+  <div>
+    <input formControlName="isvegan" type="checkbox" name="vegan" /><label
+      for="vegan"
+      >Vegan</label
+    >
+  </div>
+  <div>
+    Title:
+    <input
+      formControlName="title"
+      name="title"
+      type="text"
+      class="title"
+      placeholder="Title"
+    /><br />
+  </div>
+  <!-- <div>
+    Ingridients:
+    <input type="text" placeholder="1tsp of soyasos" />
+    <button>Add</button>
+  </div> -->
+  <textarea
     formControlName="description"
     name=""
     id=""
@@ -11,8 +34,24 @@
     rows="10"
     class="description"
     placeholder="Description"
-    ></textarea>
-    <input type="file" class="button"/>
-    <button type="submit" class="button">SUBMIT</button>
-  </form>
+  ></textarea>
+
+  <div>
+    <button type="button" (click)="filePicker.click()" >Add image</button>
+    <input
+      #filePicker
+      type="file"
+      class="hidden-input"
+      (change)="onImagePicked($event)"
+    />
+  </div>
+  <div
+    class="image-preview"
+    *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid"
+  >
+    <img [src]="imagePreview" alt="image preview" />
+  </div>
+
+  <button type="submit" class="button">POST</button>
+</form>
 <!-- </div> -->
