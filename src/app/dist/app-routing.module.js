@@ -10,8 +10,10 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var create_recipe_component_1 = require("./recipes/create-recipe/create-recipe.component");
 var recipe_list_component_1 = require("./recipes/recipe-list/recipe-list.component");
+var recipe_detail_component_1 = require("./recipes/recipe-detail/recipe-detail.component");
 var routes = [
     { path: "", component: recipe_list_component_1.RecipeListComponent },
+    { path: "recipes/:id", component: recipe_detail_component_1.RecipeDetailComponent },
     { path: "submitrecipe", component: create_recipe_component_1.CreateRecipeComponent },
 ];
 var AppRoutingModule = /** @class */ (function () {

@@ -1,16 +1,18 @@
 import { Ingredient } from "./ingredient.model";
 
 export class Recipe {
-  public title: string;
-  public description: string;
-  // public image: string;
-  public ingredients: Ingredient[];
-  public isVegan: boolean;
+  id: string;
+  title: string;
+  description: string;
+  // image: string;
+  // ingredients: Ingredient[];
+  isVegan: boolean;
+  // creatorData: any;
 
-  constructor(t: string, d: string, ing: Ingredient[], v: boolean) {
+  constructor(t: string, d: string, v: boolean) {
     this.title = t;
     this.description = d;
-    this.ingredients = ing;
+    // this.ingredients = ing;
     this.isVegan = v;
   }
 }

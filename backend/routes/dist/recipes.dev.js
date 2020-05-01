@@ -108,22 +108,20 @@ router.get("", function (req, res, next) {
   }).catch(function (err) {
     console.log("could not fetch recipes!");
   });
-});
-/*
-//* fetching single post
-router.get("/:id", (req, res, next) => {
-  Post.findById(req.params.id)
-    // .populate("creatorData") //! idk for this too
-    .then((recipe) => {
-      if (recipe) {
-        res.status(200).json(recipe);
-      } else {
-        res.status(404).json({ message: "recipe not found :(" });
-      }
-    });
-});
-*/
+}); //* fetching single recipe
 
+router.get("/:id", function (req, res, next) {
+  Recipe.findById(req.params.id) // .populate("creatorData") //! idk for this too
+  .then(function (recipe) {
+    if (recipe) {
+      res.status(200).json(recipe);
+    } else {
+      res.status(404).json({
+        message: "recipe not found :("
+      });
+    }
+  });
+});
 /*
 //* deleting single post
 router.delete("/:id", checkAuth, (req, res, next) => {

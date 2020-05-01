@@ -1,0 +1,10 @@
+<div class="main-container">
+    <p>{{ recipe?.title }}</p>
+    <p> {{ recipe?.description}} </p>
+    <p *ngIf="recipe?.isVegan">VEGAN</p>
+    <p *ngIf="!recipe?.isVegan">NOT VEGAN</p>
+    <div class="options">
+        <button (click)="onEdit()">EDIT</button>
+        <button (cilck)="onDelete()">DELETE</button>
+    </div>
+</div>

@@ -1,3 +1,3 @@
 <div class="main-container">
-    <app-recipe-item *ngFor="let recipeEl of recipes; let i = index" [recipe]="recipeEl" [index]="i" ></app-recipe-item>
+    <app-recipe-item [routerLink]="['/recipes', recipeEl.id]" *ngFor="let recipeEl of recipes; let i = index" [recipe]="recipeEl" [index]="i" ></app-recipe-item>
 </div>

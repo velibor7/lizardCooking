@@ -17,8 +17,13 @@ export class RecipesService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  getRecipe(i: number) {
-    return this.recipes[i];
+  getRecipe(id: string) {
+    return this.http.get<{
+      _id: string;
+      title: string;
+      description: string;
+      isVegan: boolean;
+    }>("http://localhost:3000/api/recipes/" + id);
   }
 
   getRecipes() {

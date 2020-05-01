@@ -1,10 +1,11 @@
 "use strict";
 exports.__esModule = true;
 var Recipe = /** @class */ (function () {
-    function Recipe(t, d, ing, v) {
+    // creatorData: any;
+    function Recipe(t, d, v) {
         this.title = t;
         this.description = d;
-        this.ingredients = ing;
+        // this.ingredients = ing;
         this.isVegan = v;
     }
     return Recipe;

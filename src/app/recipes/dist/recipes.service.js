@@ -24,8 +24,8 @@ var RecipesService = /** @class */ (function () {
         this.recipesUpdated = new rxjs_1.Subject();
         this.recipes = [];
     }
-    RecipesService.prototype.getRecipe = function (i) {
-        return this.recipes[i];
+    RecipesService.prototype.getRecipe = function (id) {
+        return this.http.get("http://localhost:3000/api/recipes/" + id);
     };
     RecipesService.prototype.getRecipes = function () {
         var _this = this;

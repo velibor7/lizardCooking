@@ -110,10 +110,9 @@ router.get("", (req, res, next) => {
     });
 });
 
-/*
-//* fetching single post
+//* fetching single recipe
 router.get("/:id", (req, res, next) => {
-  Post.findById(req.params.id)
+  Recipe.findById(req.params.id)
     // .populate("creatorData") //! idk for this too
     .then((recipe) => {
       if (recipe) {
@@ -123,7 +122,6 @@ router.get("/:id", (req, res, next) => {
       }
     });
 });
-*/
 
 /*
 //* deleting single post
