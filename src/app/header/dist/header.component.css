@@ -6,7 +6,8 @@
   height: 4em;
   display: flex;
   justify-content: space-between;
-  background-color: gray;
+  background-color: white;
+  align-items: center;
 }
 
 .header-container .search {
@@ -19,6 +20,7 @@
   font-size: 2em;
   align-items: center;
   cursor: pointer;
+  margin-left: 0.5em;
 }
 
 .header-container nav {

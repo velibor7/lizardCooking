@@ -1,7 +1,9 @@
-<div class="recipe-item-card">
+<!-- <div class="recipe-item-card"> -->
     <h3 class="title"> {{recipe.title}}</h3>
-    <p class="author">Name Surname</p>
-    <p class="description"> {{recipe.description}} </p>
-    <p class="is-vegan"> {{recipe.isVegan}} </p>
-    <img class="recipe-img" src="" alt="">
-</div>
+    <p class="author">by Name Surname</p>
+    <!-- <p class="description"> {{recipe.description}} </p> -->
+    <img class="recipe-img" src="../../../../assets/macaroni.jpg" alt="">
+    <p *ngIf="recipe.isVegan" class="is-vegan">VEGAN</p>
+    <!--? if somebody doesn't know si their recipe vegan we shouldn't display anything size of the boxes changes, we need to fix it -->
+    <p *ngIf="!recipe.isVegan" [ngStyle]="{'background-color': 'red'}" class="is-vegan">NOT VEGAN</p>
+<!-- </div> --> 

@@ -3,5 +3,33 @@
   background-color: red;
   display: flex;
   flex-direction: column;
-  margin: 1em;
+}
+
+.title {
+  margin: 0.4em 0em 0em 0em;
+}
+
+.author {
+  font-size: 0.6em;
+  color: white;
+}
+
+.recipe-img {
+  border: 1px solid white;
+  align-self: center;
+  width: 80%;
+  height: auto;
+  margin-bottom: 0.9em;
+}
+
+.is-vegan {
+  display: inline-flex;
+  margin: 0;
+  align-self: flex-end;
+  font-size: 0.7em;
+  border: 0 solid black;
+  border-radius: 2em;
+  padding: 0.5em;
+  background-color: green;
+  justify-content: flex-end;
 }

@@ -1,1 +1,1 @@
-.recipe-item-card{width:40%;background-color:red;display:flex;flex-direction:column;margin:1em}
+.recipe-item-card{width:40%;background-color:red;display:flex;flex-direction:column}.title{margin:.4em 0 0}.author{font-size:.6em;color:#fff}.recipe-img{border:1px solid #fff;align-self:center;width:80%;height:auto;margin-bottom:.9em}.is-vegan{display:inline-flex;margin:0;align-self:flex-end;font-size:.7em;border:0 solid #000;border-radius:2em;padding:.5em;background-color:green;justify-content:flex-end}

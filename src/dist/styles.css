@@ -3,4 +3,6 @@ body,
 html {
   margin: 0;
   background-color: blue;
+  background: url("./assets/leaves.jpg");
+  background-size: cover;
 }
