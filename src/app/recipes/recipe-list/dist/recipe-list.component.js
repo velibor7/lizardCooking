@@ -8,9 +8,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 var core_1 = require("@angular/core");
 var RecipeListComponent = /** @class */ (function () {
-    function RecipeListComponent() {
+    function RecipeListComponent(recipeService) {
+        this.recipeService = recipeService;
     }
-    RecipeListComponent.prototype.ngOnInit = function () { };
+    RecipeListComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.recipeSubscription = this.recipeService.recipesChanged.subscribe(function (recipes) {
+            _this.recipes = recipes;
+        });
+        this.recipes = this.recipeService.getRecipes();
+    };
+    RecipeListComponent.prototype.ngOnDestroy = function () {
+        this.recipeSubscription.unsubscribe();
+    };
     RecipeListComponent = __decorate([
         core_1.Component({
             selector: "app-recipe-list",
