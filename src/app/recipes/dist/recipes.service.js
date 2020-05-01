@@ -9,7 +9,9 @@ exports.__esModule = true;
 var core_1 = require("@angular/core");
 var rxjs_1 = require("rxjs");
 var RecipesService = /** @class */ (function () {
-    function RecipesService() {
+    function RecipesService(http, router) {
+        this.http = http;
+        this.router = router;
         this.recipesChanged = new rxjs_1.Subject();
         this.recipes = [];
     }
@@ -19,9 +21,18 @@ var RecipesService = /** @class */ (function () {
     RecipesService.prototype.getRecipes = function () {
         return this.recipes.slice();
     };
-    RecipesService.prototype.add = function (recipe) {
-        this.recipes.push(recipe);
-        this.recipesChanged.next(this.recipes.slice());
+    RecipesService.prototype.add = function (title, description, isVegan) {
+        var _this = this;
+        var recipeData = new FormData();
+        recipeData.append("title", title);
+        recipeData.append("description", description);
+        recipeData.append("isVegan", JSON.stringify(isVegan));
+        this.http
+            .post("http://localhost:3000/api/recipes", recipeData)
+            .subscribe(function (responseData) {
+            console.log(responseData);
+            _this.router.navigate(["/"]);
+        });
     };
     RecipesService.prototype.update = function (i, newR) { };
     RecipesService.prototype["delete"] = function (i) { };

@@ -42,7 +42,7 @@ router.post(
     const recipe = new Recipe({
       title: req.body.title,
       description: req.body.description,
-      isVegan: req.body.isVegan,
+      // isVegan: req.body.isVegan,
     });
     console.log("\nthis recipe is added to db: ");
     console.log(recipe);

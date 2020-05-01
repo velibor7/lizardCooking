@@ -46,8 +46,8 @@ function (req, res, next) {
   var url = req.protocol + "://" + req.get("host");
   var recipe = new Recipe({
     title: req.body.title,
-    description: req.body.description,
-    isVegan: req.body.isVegan
+    description: req.body.description // isVegan: req.body.isVegan,
+
   });
   console.log("\nthis recipe is added to db: ");
   console.log(recipe);

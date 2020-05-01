@@ -12,14 +12,15 @@ var RecipeListComponent = /** @class */ (function () {
         this.recipeService = recipeService;
     }
     RecipeListComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.recipeSubscription = this.recipeService.recipesChanged.subscribe(function (recipes) {
-            _this.recipes = recipes;
-        });
-        this.recipes = this.recipeService.getRecipes();
+        // this.recipeSubscription = this.recipeService.recipesChanged.subscribe(
+        // (recipes: Recipe[]) => {
+        // this.recipes = recipes;
+        // }
+        // );
+        //this.recipes = this.recipeService.getRecipes();
     };
     RecipeListComponent.prototype.ngOnDestroy = function () {
-        this.recipeSubscription.unsubscribe();
+        // this.recipeSubscription.unsubscribe();
     };
     RecipeListComponent = __decorate([
         core_1.Component({

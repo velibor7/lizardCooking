@@ -7,10 +7,11 @@ const recipesRoutes = require("./routes/recipes");
 // const userRoutes = require("./routes/user");
 
 const app = express();
-/*
+// yE6AnuuySFvB07v2
+
 mongoose
   .connect(
-    "mongodb+srv://wony:M8VVt761fkt1ZsHx@cluster0-onv8q.mongodb.net/epinephrine?retryWrites=true&w=majority"
+    "mongodb+srv://wony:yE6AnuuySFvB07v2@cluster0-1eure.mongodb.net/test?retryWrites=true&w=majority"
   )
   .then(() => {
     console.log("connected to db! :)))");
@@ -18,7 +19,7 @@ mongoose
   .catch(() => {
     console.log("failed to connect do db! :(");
   });
-*/
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 // app.use("/images", express.static(path.join("backend/images")));

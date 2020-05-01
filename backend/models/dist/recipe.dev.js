@@ -10,13 +10,10 @@ var recipeSchema = mongoose.Schema({
   description: {
     type: String,
     required: true
-  },
-  // ingredients : {type: String, required: true},
+  } // ingredients : {type: String, required: true},
   // imagePath : {},
-  isVegan: {
-    type: Boolean,
-    default: false
-  } // creatorData : {},
+  // isVegan: { type: Boolean, default: false },
+  // creatorData : {},
 
 });
 module.exports = mongoose.model("Recipe", recipeSchema);

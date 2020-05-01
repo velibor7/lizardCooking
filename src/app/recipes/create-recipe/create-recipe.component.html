@@ -1,15 +1,18 @@
-<div class="create-container">
-  <div><input type="checkbox" name="vegan"><label for="vegan">Vegan</label></div>
-  <input type="text" class="title" placeholder="Title" />
-  <input type="text" placeholder="Ingridients" /> IDK will have to work on this
-  <textarea
+<!-- <div class="create-container"> -->
+  <form [formGroup]="form" action="" (submit)="onSaveRecipe()" class="create-container">
+    <div><input formControlName="isvegan" type="checkbox" name="vegan"><label for="vegan">Vegan</label></div>
+    <input formControlName="title" name="title" type="text" class="title" placeholder="Title" />
+    <input type="text" placeholder="Ingridients" /> IDK will have to work on this
+    <textarea
+    formControlName="description"
     name=""
     id=""
     cols="30"
     rows="10"
     class="description"
     placeholder="Description"
-  ></textarea>
-  <input type="file" />
-  <button type="submit">SUBMIT</button>
-</div>
+    ></textarea>
+    <input type="file" class="button"/>
+    <button type="submit" class="button">SUBMIT</button>
+  </form>
+<!-- </div> -->
