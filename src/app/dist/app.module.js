@@ -9,6 +9,7 @@ exports.__esModule = true;
 var platform_browser_1 = require("@angular/platform-browser");
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
+var http_1 = require("@angular/common/http");
 var app_routing_module_1 = require("./app-routing.module");
 var app_component_1 = require("./app.component");
 var header_component_1 = require("./header/header.component");
@@ -31,7 +32,13 @@ var AppModule = /** @class */ (function () {
                 recipe_list_component_1.RecipeListComponent,
                 recipe_item_component_1.RecipeItemComponent,
             ],
-            imports: [platform_browser_1.BrowserModule, app_routing_module_1.AppRoutingModule, forms_1.FormsModule, forms_1.ReactiveFormsModule],
+            imports: [
+                platform_browser_1.BrowserModule,
+                app_routing_module_1.AppRoutingModule,
+                forms_1.FormsModule,
+                forms_1.ReactiveFormsModule,
+                http_1.HttpClientModule,
+            ],
             providers: [],
             bootstrap: [app_component_1.AppComponent]
         })
