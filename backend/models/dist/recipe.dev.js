@@ -12,7 +12,10 @@ var recipeSchema = mongoose.Schema({
     required: true
   },
   // ingredients : {type: String, required: true},
-  // imagePath : {},
+  imagePath: {
+    type: String,
+    default: ""
+  },
   isVegan: {
     type: Boolean,
     default: false

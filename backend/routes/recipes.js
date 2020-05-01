@@ -1,12 +1,11 @@
 const express = require("express");
-// const multer = require("multer");
+const multer = require("multer");
 
 const Recipe = require("../models/recipe");
 // const checkAuth = require("../middleware/check-auth");
 
 const router = express.Router();
 
-/*
 const MIME_TYPE_MAP = {
   "image/png": "png",
   "image/jpg": "jpg",
@@ -15,6 +14,8 @@ const MIME_TYPE_MAP = {
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
+    //console.log("FILEE:");
+    //console.log(file);
     const isValid = MIME_TYPE_MAP[file.mimetype];
     let error = new Error("invalid mime type");
     if (isValid) {
@@ -30,20 +31,20 @@ const storage = multer.diskStorage({
     cb(null, name + "-" + Date.now() + "." + ext);
   },
 });
-*/
 
 //* create recipe
 router.post(
   "",
   // checkAuth,
-  // multer({ storage: storage }).single("image"),
+  multer({ storage: storage }).single("image"),
   (req, res, next) => {
     const url = req.protocol + "://" + req.get("host");
-    // console.log(req);
+    console.log(req.file);
     const recipe = new Recipe({
       title: req.body.title,
       description: req.body.description,
       isVegan: req.body.isVegan === "true",
+      imagePath: url + "/images/" + req.file.filename,
     });
     console.log("\nthis recipe will be added to db: ");
     console.log(recipe);

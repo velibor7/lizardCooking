@@ -6,49 +6,52 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var express = require("express"); // const multer = require("multer");
+var express = require("express");
 
+var multer = require("multer");
 
 var Recipe = require("../models/recipe"); // const checkAuth = require("../middleware/check-auth");
 
 
 var router = express.Router();
-/*
-const MIME_TYPE_MAP = {
+var MIME_TYPE_MAP = {
   "image/png": "png",
   "image/jpg": "jpg",
-  "image/jpeg": "jpg",
+  "image/jpeg": "jpg"
 };
+var storage = multer.diskStorage({
+  destination: function destination(req, file, cb) {
+    //console.log("FILEE:");
+    //console.log(file);
+    var isValid = MIME_TYPE_MAP[file.mimetype];
+    var error = new Error("invalid mime type");
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    const isValid = MIME_TYPE_MAP[file.mimetype];
-    let error = new Error("invalid mime type");
     if (isValid) {
       error = null;
-    }
-    // relative to server.js file
+    } // relative to server.js file
+
+
     cb(null, "backend/images");
   },
-  filename: (req, file, cb) => {
+  filename: function filename(req, file, cb) {
     //! we gotta change this to better way of saving
-    const name = file.originalname.toLowerCase().split(" ").join("-");
-    const ext = MIME_TYPE_MAP[file.mimetype];
+    var name = file.originalname.toLowerCase().split(" ").join("-");
+    var ext = MIME_TYPE_MAP[file.mimetype];
     cb(null, name + "-" + Date.now() + "." + ext);
-  },
-});
-*/
-//* create recipe
+  }
+}); //* create recipe
 
 router.post("", // checkAuth,
-// multer({ storage: storage }).single("image"),
-function (req, res, next) {
-  var url = req.protocol + "://" + req.get("host"); // console.log(req);
-
+multer({
+  storage: storage
+}).single("image"), function (req, res, next) {
+  var url = req.protocol + "://" + req.get("host");
+  console.log(req.file);
   var recipe = new Recipe({
     title: req.body.title,
     description: req.body.description,
-    isVegan: req.body.isVegan === "true"
+    isVegan: req.body.isVegan === "true",
+    imagePath: url + "/images/" + req.file.filename
   });
   console.log("\nthis recipe will be added to db: ");
   console.log(recipe);

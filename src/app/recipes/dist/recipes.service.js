@@ -40,7 +40,8 @@ var RecipesService = /** @class */ (function () {
                         id: recipe._id,
                         title: recipe.title,
                         description: recipe.description,
-                        isVegan: recipe.isVegan
+                        isVegan: recipe.isVegan,
+                        imagePath: recipe.imagePath
                     };
                 })
             };
@@ -55,18 +56,15 @@ var RecipesService = /** @class */ (function () {
     RecipesService.prototype.getRecipeUpdateListener = function () {
         return this.recipesUpdated.asObservable();
     };
-    RecipesService.prototype.add = function (title, description, isVegan) {
-        //  const recipeData = new FormData();
-        // recipeData.append("title", title);
-        // recipeData.append("description", description);
-        // recipeData.append("isVegan", JSON.stringify(isVegan));
+    RecipesService.prototype.add = function (title, description, isVegan, image) {
         var _this = this;
+        var recipeData = new FormData();
+        recipeData.append("title", title);
+        recipeData.append("description", description);
+        recipeData.append("isVegan", JSON.stringify(isVegan));
+        recipeData.append("image", image);
         this.http
-            .post("http://localhost:3000/api/recipes", {
-            title: title,
-            description: description,
-            isVegan: JSON.stringify(isVegan)
-        })
+            .post("http://localhost:3000/api/recipes", recipeData)
             .subscribe(function (responseData) {
             console.log(responseData);
             _this.router.navigate(["/"]);

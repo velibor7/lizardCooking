@@ -4,7 +4,7 @@ export class Recipe {
   id: string;
   title: string;
   description: string;
-  // image: string;
+  imagePath: string = "";
   // ingredients: Ingredient[];
   isVegan: boolean;
   // creatorData: any;

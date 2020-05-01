@@ -22,7 +22,8 @@ var RecipeDetailComponent = /** @class */ (function () {
                     id: recipeData._id,
                     title: recipeData.title,
                     description: recipeData.description,
-                    isVegan: recipeData.isVegan
+                    isVegan: recipeData.isVegan,
+                    imagePath: recipeData.imagePath
                 };
             });
         });

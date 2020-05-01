@@ -22,8 +22,8 @@ var CreateRecipeComponent = /** @class */ (function () {
         });
     };
     CreateRecipeComponent.prototype.onSaveRecipe = function () {
-        // console.log(this.form.value);
-        this.recipeService.add(this.form.value.title, this.form.value.description, this.form.value.isvegan);
+        console.log(this.form.value.image);
+        this.recipeService.add(this.form.value.title, this.form.value.description, this.form.value.isvegan, this.form.value.image);
     };
     CreateRecipeComponent.prototype.onImagePicked = function (event) {
         var _this = this;

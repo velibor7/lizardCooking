@@ -26,6 +26,7 @@ export class RecipeDetailComponent implements OnInit {
           title: recipeData.title,
           description: recipeData.description,
           isVegan: recipeData.isVegan,
+          imagePath: recipeData.imagePath,
         };
       });
     });

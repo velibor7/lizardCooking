@@ -21,8 +21,8 @@ mongoose.connect("mongodb+srv://wony:yE6AnuuySFvB07v2@cluster0-1eure.mongodb.net
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
-})); // app.use("/images", express.static(path.join("backend/images")));
-
+}));
+app.use("/images", express.static(path.join("backend/images")));
 app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Headers", "Origin X-Requested-With, Content-Type, Accept, Authorization");

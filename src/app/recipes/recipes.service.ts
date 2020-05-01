@@ -23,6 +23,7 @@ export class RecipesService {
       title: string;
       description: string;
       isVegan: boolean;
+      imagePath: string;
     }>("http://localhost:3000/api/recipes/" + id);
   }
 
@@ -42,6 +43,7 @@ export class RecipesService {
                 title: recipe.title,
                 description: recipe.description,
                 isVegan: recipe.isVegan,
+                imagePath: recipe.imagePath,
               };
             }),
           };
@@ -59,20 +61,17 @@ export class RecipesService {
     return this.recipesUpdated.asObservable();
   }
 
-  add(title: string, description: string, isVegan: boolean) {
-    //  const recipeData = new FormData();
-    // recipeData.append("title", title);
-    // recipeData.append("description", description);
-    // recipeData.append("isVegan", JSON.stringify(isVegan));
+  add(title: string, description: string, isVegan: boolean, image: File) {
+    const recipeData = new FormData();
+    recipeData.append("title", title);
+    recipeData.append("description", description);
+    recipeData.append("isVegan", JSON.stringify(isVegan));
+    recipeData.append("image", image);
 
     this.http
       .post<{ message: string; recipe: Recipe }>(
         "http://localhost:3000/api/recipes",
-        {
-          title: title,
-          description: description,
-          isVegan: JSON.stringify(isVegan),
-        }
+        recipeData
       )
       .subscribe((responseData) => {
         console.log(responseData);

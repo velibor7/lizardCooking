@@ -25,11 +25,12 @@ export class CreateRecipeComponent implements OnInit, OnDestroy {
   }
 
   onSaveRecipe() {
-    // console.log(this.form.value);
+    console.log(this.form.value.image);
     this.recipeService.add(
       this.form.value.title,
       this.form.value.description,
-      this.form.value.isvegan
+      this.form.value.isvegan,
+      this.form.value.image
     );
   }
 
