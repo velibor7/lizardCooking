@@ -1,11 +1,18 @@
-const express = require("express");
-// const multer = require("multer");
+"use strict";
 
-const Recipe = require("../models/recipe");
-// const checkAuth = require("../middleware/check-auth");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-const router = express.Router();
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var express = require("express"); // const multer = require("multer");
+
+
+var Recipe = require("../models/recipe"); // const checkAuth = require("../middleware/check-auth");
+
+
+var router = express.Router();
 /*
 const MIME_TYPE_MAP = {
   "image/png": "png",
@@ -31,33 +38,28 @@ const storage = multer.diskStorage({
   },
 });
 */
-
 //* create recipe
-router.post(
-  "",
-  // checkAuth,
-  // multer({ storage: storage }).single("image"),
-  (req, res, next) => {
-    const url = req.protocol + "://" + req.get("host");
-    const recipe = new Recipe({
-      title: req.body.title,
-      description: req.body.description,
-      isVegan: req.body.isVegan,
-    });
-    console.log("\nthis recipe is added to db: ");
-    console.log(recipe);
-    recipe.save().then((createdRecipe) => {
-      res.status(201).json({
-        message: "recipe added sucessfuly",
-        post: {
-          ...createdRecipe,
-          id: createdRecipe._id,
-        },
-      });
-    });
-  }
-);
 
+router.post("", // checkAuth,
+// multer({ storage: storage }).single("image"),
+function (req, res, next) {
+  var url = req.protocol + "://" + req.get("host");
+  var recipe = new Recipe({
+    title: req.body.title,
+    description: req.body.description,
+    isVegan: req.body.isVegan
+  });
+  console.log("\nthis recipe is added to db: ");
+  console.log(recipe);
+  recipe.save().then(function (createdRecipe) {
+    res.status(201).json({
+      message: "recipe added sucessfuly",
+      post: _objectSpread({}, createdRecipe, {
+        id: createdRecipe._id
+      })
+    });
+  });
+});
 /*
 //* update post
 router.put(
@@ -90,25 +92,22 @@ router.put(
   }
 );
 */
-
 //* fetching all posts
-router.get("", (req, res, next) => {
-  Post.find()
-    // .populate("creatorData")
-    .then((documents) => {
-      // console.log(documents);
-      console.log("recipes fetcheddd!!! :)");
-      //! async
-      res.status(200).json({
-        message: "recipes fetched succesfully :)",
-        recipes: documents,
-      });
-    })
-    .catch((err) => {
-      console.log("could not fetch recipes!");
-    });
-});
 
+router.get("", function (req, res, next) {
+  Post.find() // .populate("creatorData")
+  .then(function (documents) {
+    // console.log(documents);
+    console.log("recipes fetcheddd!!! :)"); //! async
+
+    res.status(200).json({
+      message: "recipes fetched succesfully :)",
+      recipes: documents
+    });
+  }).catch(function (err) {
+    console.log("could not fetch recipes!");
+  });
+});
 /*
 //* fetching single post
 router.get("/:id", (req, res, next) => {
@@ -142,4 +141,5 @@ router.delete("/:id", checkAuth, (req, res, next) => {
 });
 
 */
+
 module.exports = router;

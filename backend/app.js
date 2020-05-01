@@ -4,10 +4,10 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const recipesRoutes = require("./routes/recipes");
-const userRoutes = require("./routes/user");
+// const userRoutes = require("./routes/user");
 
 const app = express();
-// M8VVt761fkt1ZsHx
+/*
 mongoose
   .connect(
     "mongodb+srv://wony:M8VVt761fkt1ZsHx@cluster0-onv8q.mongodb.net/epinephrine?retryWrites=true&w=majority"
@@ -18,10 +18,10 @@ mongoose
   .catch(() => {
     console.log("failed to connect do db! :(");
   });
-
+*/
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use("/images", express.static(path.join("backend/images")));
+// app.use("/images", express.static(path.join("backend/images")));
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -37,6 +37,6 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/recipes", recipesRoutes);
-app.use("/api/user", userRoutes);
+// app.use("/api/user", userRoutes);
 
 module.exports = app;
