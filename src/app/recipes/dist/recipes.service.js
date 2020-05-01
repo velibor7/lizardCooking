@@ -5,29 +5,62 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __spreadArrays = (this && this.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
 exports.__esModule = true;
 var core_1 = require("@angular/core");
 var rxjs_1 = require("rxjs");
+var operators_1 = require("rxjs/operators");
 var RecipesService = /** @class */ (function () {
     function RecipesService(http, router) {
         this.http = http;
         this.router = router;
-        this.recipesChanged = new rxjs_1.Subject();
+        //recipesChanged = new Subject<Recipe[]>();
+        this.recipesUpdated = new rxjs_1.Subject();
         this.recipes = [];
     }
     RecipesService.prototype.getRecipe = function (i) {
         return this.recipes[i];
     };
     RecipesService.prototype.getRecipes = function () {
-        return this.recipes.slice();
+        var _this = this;
+        this.http
+            .get("http://localhost:3000/api/recipes")
+            .pipe(operators_1.map(function (recipeData) {
+            //console.log("recipesData: ");
+            // console.log(recipeData.cipes);
+            return {
+                recipes: recipeData.recipes.map(function (recipe) {
+                    return {
+                        id: recipe._id,
+                        title: recipe.title,
+                        description: recipe.description,
+                        isVegan: recipe.isVegan
+                    };
+                })
+            };
+        }))
+            .subscribe(function (modifiedRecipeData) {
+            // console.log("modfiedData:   ");
+            // console.log(modifiedRecipeData);
+            _this.recipes = modifiedRecipeData.recipes;
+            _this.recipesUpdated.next({ recipes: __spreadArrays(_this.recipes) });
+        });
+    };
+    RecipesService.prototype.getRecipeUpdateListener = function () {
+        return this.recipesUpdated.asObservable();
     };
     RecipesService.prototype.add = function (title, description, isVegan) {
         //  const recipeData = new FormData();
-        var _this = this;
         // recipeData.append("title", title);
-        //recipeData.append("description", description);
-        //recipeData.append("isVegan", JSON.stringify(isVegan));
-        // console.log(recipeData);
+        // recipeData.append("description", description);
+        // recipeData.append("isVegan", JSON.stringify(isVegan));
+        var _this = this;
         this.http
             .post("http://localhost:3000/api/recipes", {
             title: title,

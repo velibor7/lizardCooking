@@ -92,9 +92,9 @@ router.put(
 );
 */
 
-//* fetching all posts
+//* fetching all recipes
 router.get("", (req, res, next) => {
-  Post.find()
+  Recipe.find()
     // .populate("creatorData")
     .then((documents) => {
       // console.log(documents);
