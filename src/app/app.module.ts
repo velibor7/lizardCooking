@@ -11,6 +11,8 @@ import { CreateRecipeComponent } from "./recipes/create-recipe/create-recipe.com
 import { RecipeListComponent } from "./recipes/recipe-list/recipe-list.component";
 import { RecipeItemComponent } from "./recipes/recipe-list/recipe-item/recipe-item.component";
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.com
     RecipeListComponent,
     RecipeItemComponent,
     RecipeDetailComponent,
+    LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
