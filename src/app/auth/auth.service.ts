@@ -40,11 +40,11 @@ export class AuthService {
     this.router.navigate(["/"]);
   }
 
-  login(username: string, password: string) {
+  login(email: string, password: string) {
     this.http
       .post<{ token: string; expiresIn: number }>(
         "http://localhost:3000/api/user/login",
-        { username: username, password: password }
+        { email: email, password: password }
       )
       .subscribe((response) => {
         const token = response.token;

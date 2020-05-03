@@ -7,21 +7,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 exports.__esModule = true;
 var core_1 = require("@angular/core");
-var HeaderComponent = /** @class */ (function () {
-    function HeaderComponent(authService) {
+var AuthInterceptor = /** @class */ (function () {
+    function AuthInterceptor(authService) {
         this.authService = authService;
     }
-    HeaderComponent.prototype.ngOnInit = function () { };
-    HeaderComponent.prototype.onLogout = function () {
-        this.authService.logout();
+    AuthInterceptor.prototype.intercept = function (req, next) {
+        var authToken = this.authService.getToken();
+        var authRequest = req.clone({
+            headers: req.headers.set("Authorization", "Bearer " + authToken)
+        });
+        // console.log(authToken);
+        return next.handle(authRequest);
     };
-    HeaderComponent = __decorate([
-        core_1.Component({
-            selector: "app-header",
-            templateUrl: "./header.component.html",
-            styleUrls: ["./header.component.scss"]
-        })
-    ], HeaderComponent);
-    return HeaderComponent;
+    AuthInterceptor = __decorate([
+        core_1.Injectable()
+    ], AuthInterceptor);
+    return AuthInterceptor;
 }());
-exports.HeaderComponent = HeaderComponent;
+exports.AuthInterceptor = AuthInterceptor;

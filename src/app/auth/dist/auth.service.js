@@ -37,10 +37,10 @@ var AuthService = /** @class */ (function () {
         });
         this.router.navigate(["/"]);
     };
-    AuthService.prototype.login = function (username, password) {
+    AuthService.prototype.login = function (email, password) {
         var _this = this;
         this.http
-            .post("http://localhost:3000/api/user/login", { username: username, password: password })
+            .post("http://localhost:3000/api/user/login", { email: email, password: password })
             .subscribe(function (response) {
             var token = response.token;
             _this.token = token;

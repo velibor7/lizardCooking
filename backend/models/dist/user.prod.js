@@ -1,0 +1,1 @@
+"use strict";var mongoose=require("mongoose"),uniqueValidator=require("mongoose-unique-validator"),userSchema=mongoose.Schema({fullname:{type:String,required:!0},email:{type:String,required:!0},password:{type:String,required:!0}});userSchema.plugin(uniqueValidator),module.exports=mongoose.model("User",userSchema);

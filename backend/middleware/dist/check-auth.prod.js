@@ -1,0 +1,1 @@
+"use strict";var jwt=require("jsonwebtoken");module.exports=function(e,s,o){try{var t=e.headers.authorization.split(" ")[1],r=jwt.verify(t,"secret_hehe");console.log("THIS IS IN THE TOKEEENNN: ==========="),console.log(r),console.log("==================="),e.userData={username:r.username,userId:r.userId},o()}catch(e){s.status(401).json({message:"auth failed"})}};

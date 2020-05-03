@@ -18,6 +18,10 @@ var recipes_component_1 = require("./recipes/recipes.component");
 var create_recipe_component_1 = require("./recipes/create-recipe/create-recipe.component");
 var recipe_list_component_1 = require("./recipes/recipe-list/recipe-list.component");
 var recipe_item_component_1 = require("./recipes/recipe-list/recipe-item/recipe-item.component");
+var recipe_detail_component_1 = require("./recipes/recipe-detail/recipe-detail.component");
+var login_component_1 = require("./auth/login/login.component");
+var signup_component_1 = require("./auth/signup/signup.component");
+var auth_interceptor_1 = require("./auth/auth-interceptor");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -31,6 +35,9 @@ var AppModule = /** @class */ (function () {
                 create_recipe_component_1.CreateRecipeComponent,
                 recipe_list_component_1.RecipeListComponent,
                 recipe_item_component_1.RecipeItemComponent,
+                recipe_detail_component_1.RecipeDetailComponent,
+                login_component_1.LoginComponent,
+                signup_component_1.SignupComponent,
             ],
             imports: [
                 platform_browser_1.BrowserModule,
@@ -39,7 +46,13 @@ var AppModule = /** @class */ (function () {
                 forms_1.ReactiveFormsModule,
                 http_1.HttpClientModule,
             ],
-            providers: [],
+            providers: [
+                {
+                    provide: http_1.HTTP_INTERCEPTORS,
+                    useClass: auth_interceptor_1.AuthInterceptor,
+                    multi: true
+                },
+            ],
             bootstrap: [app_component_1.AppComponent]
         })
     ], AppModule);

@@ -3,12 +3,12 @@
     <form class="login-form" (submit)="onLogin(loginForm)" #loginForm="ngForm">
       <input
         type="text"
-        placeholder="username"
-        name="username"
+        placeholder="email"
+        name="email"
         autocomplete="on"
         required
         ngModel
-        #usernameInput="ngModel"
+        #emailInput="ngModel"
       />
       <input
         type="password"
@@ -22,7 +22,6 @@
       <p class="message">
         Not registered? <a routerLink="/register">Create an account</a>
       </p>
-      <p class="message"><a routerLink="/forgot">Forgot password?</a></p>
     </form>
   </div>
 </div>
