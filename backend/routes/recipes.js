@@ -2,7 +2,7 @@ const express = require("express");
 const multer = require("multer");
 
 const Recipe = require("../models/recipe");
-// const checkAuth = require("../middleware/check-auth");
+const checkAuth = require("../middleware/check-auth");
 
 const router = express.Router();
 
@@ -35,7 +35,7 @@ const storage = multer.diskStorage({
 //* create recipe
 router.post(
   "",
-  // checkAuth,
+  checkAuth,
   multer({ storage: storage }).single("image"),
   (req, res, next) => {
     const url = req.protocol + "://" + req.get("host");
@@ -45,6 +45,7 @@ router.post(
       description: req.body.description,
       isVegan: req.body.isVegan === "true",
       imagePath: url + "/images/" + req.file.filename,
+      creatorData: req.userData.userId,
     });
     console.log("\nthis recipe will be added to db: ");
     console.log(recipe);
@@ -96,7 +97,7 @@ router.put(
 //* fetching all recipes
 router.get("", (req, res, next) => {
   Recipe.find()
-    // .populate("creatorData")
+    .populate("creatorData")
     .then((documents) => {
       // console.log(documents);
       console.log("recipes fetcheddd!!! :)");
@@ -114,7 +115,7 @@ router.get("", (req, res, next) => {
 //* fetching single recipe
 router.get("/:id", (req, res, next) => {
   Recipe.findById(req.params.id)
-    // .populate("creatorData") //! idk for this too
+    .populate("creatorData") //! idk for this too
     .then((recipe) => {
       if (recipe) {
         res.status(200).json(recipe);

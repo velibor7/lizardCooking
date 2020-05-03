@@ -19,7 +19,11 @@ var recipeSchema = mongoose.Schema({
   isVegan: {
     type: Boolean,
     default: false
-  } // creatorData : {},
-
+  },
+  creatorData: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true
+  }
 });
 module.exports = mongoose.model("Recipe", recipeSchema);

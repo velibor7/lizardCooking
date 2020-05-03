@@ -1,6 +1,7 @@
 <!-- <div class="recipe-item-card"> -->
     <h3 class="title"> {{recipe.title}}</h3>
-    <p class="author">by Name Surname</p>
+    <!--? ovo fullname izgleda cita iz baze, ni sam ne znam kako -->
+    <p class="author">by {{recipe.creatorData?.fullname}} </p>
     <!-- <p class="description"> {{recipe.description}} </p> -->
     <img class="recipe-img" [src]="recipe?.imagePath" alt="No image">
     <p *ngIf="recipe.isVegan" class="is-vegan">VEGAN</p>

@@ -6,7 +6,11 @@ const recipeSchema = mongoose.Schema({
   // ingredients : {type: String, required: true},
   imagePath: { type: String, default: "" },
   isVegan: { type: Boolean, default: false },
-  // creatorData : {},
+  creatorData: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Recipe", recipeSchema);

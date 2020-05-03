@@ -41,7 +41,8 @@ var RecipesService = /** @class */ (function () {
                         title: recipe.title,
                         description: recipe.description,
                         isVegan: recipe.isVegan,
-                        imagePath: recipe.imagePath
+                        imagePath: recipe.imagePath,
+                        creatorData: recipe.creatorData
                     };
                 })
             };

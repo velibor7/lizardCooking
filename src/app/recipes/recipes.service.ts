@@ -24,6 +24,7 @@ export class RecipesService {
       description: string;
       isVegan: boolean;
       imagePath: string;
+      creatorData: Object;
     }>("http://localhost:3000/api/recipes/" + id);
   }
 
@@ -44,6 +45,7 @@ export class RecipesService {
                 description: recipe.description,
                 isVegan: recipe.isVegan,
                 imagePath: recipe.imagePath,
+                creatorData: recipe.creatorData,
               };
             }),
           };

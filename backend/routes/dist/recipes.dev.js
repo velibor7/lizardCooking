@@ -10,8 +10,9 @@ var express = require("express");
 
 var multer = require("multer");
 
-var Recipe = require("../models/recipe"); // const checkAuth = require("../middleware/check-auth");
+var Recipe = require("../models/recipe");
 
+var checkAuth = require("../middleware/check-auth");
 
 var router = express.Router();
 var MIME_TYPE_MAP = {
@@ -41,8 +42,7 @@ var storage = multer.diskStorage({
   }
 }); //* create recipe
 
-router.post("", // checkAuth,
-multer({
+router.post("", checkAuth, multer({
   storage: storage
 }).single("image"), function (req, res, next) {
   var url = req.protocol + "://" + req.get("host");
@@ -51,7 +51,8 @@ multer({
     title: req.body.title,
     description: req.body.description,
     isVegan: req.body.isVegan === "true",
-    imagePath: url + "/images/" + req.file.filename
+    imagePath: url + "/images/" + req.file.filename,
+    creatorData: req.userData.userId
   });
   console.log("\nthis recipe will be added to db: ");
   console.log(recipe);
@@ -99,8 +100,7 @@ router.put(
 //* fetching all recipes
 
 router.get("", function (req, res, next) {
-  Recipe.find() // .populate("creatorData")
-  .then(function (documents) {
+  Recipe.find().populate("creatorData").then(function (documents) {
     // console.log(documents);
     console.log("recipes fetcheddd!!! :)"); //! async
 
@@ -114,7 +114,7 @@ router.get("", function (req, res, next) {
 }); //* fetching single recipe
 
 router.get("/:id", function (req, res, next) {
-  Recipe.findById(req.params.id) // .populate("creatorData") //! idk for this too
+  Recipe.findById(req.params.id).populate("creatorData") //! idk for this too
   .then(function (recipe) {
     if (recipe) {
       res.status(200).json(recipe);

@@ -1,5 +1,6 @@
 <div class="main-container">
     <p>{{ recipe?.title }}</p>
+    <p> {{ recipe?.creatorData.fullName }} </p>
     <p> {{ recipe?.description}} </p>
     <img [src]="recipe.imagePath" alt="" class="image">
     <p *ngIf="recipe?.isVegan">VEGAN</p>
