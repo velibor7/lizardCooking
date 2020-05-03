@@ -11,10 +11,14 @@ var router_1 = require("@angular/router");
 var create_recipe_component_1 = require("./recipes/create-recipe/create-recipe.component");
 var recipe_list_component_1 = require("./recipes/recipe-list/recipe-list.component");
 var recipe_detail_component_1 = require("./recipes/recipe-detail/recipe-detail.component");
+var login_component_1 = require("./auth/login/login.component");
+var signup_component_1 = require("./auth/signup/signup.component");
 var routes = [
     { path: "", component: recipe_list_component_1.RecipeListComponent },
     { path: "recipes/:id", component: recipe_detail_component_1.RecipeDetailComponent },
     { path: "submitrecipe", component: create_recipe_component_1.CreateRecipeComponent },
+    { path: "login", component: login_component_1.LoginComponent },
+    { path: "signup", component: signup_component_1.SignupComponent },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {

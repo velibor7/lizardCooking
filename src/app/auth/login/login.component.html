@@ -1,1 +1,28 @@
-<p>login works!</p>
+<div class="auth-card">
+  <div class="form">
+    <form class="login-form" (submit)="onLogin(loginForm)" #loginForm="ngForm">
+      <input
+        type="text"
+        placeholder="username"
+        name="username"
+        autocomplete="on"
+        required
+        ngModel
+        #usernameInput="ngModel"
+      />
+      <input
+        type="password"
+        placeholder="password"
+        name="password"
+        autocompolete="current-password"
+        ngModel
+        #passwordInput="ngModel"
+      />
+      <button type="submit">LOG IN</button>
+      <p class="message">
+        Not registered? <a routerLink="/register">Create an account</a>
+      </p>
+      <p class="message"><a routerLink="/forgot">Forgot password?</a></p>
+    </form>
+  </div>
+</div>

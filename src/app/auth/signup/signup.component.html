@@ -1,1 +1,36 @@
-<p>signup works!</p>
+<div class="auth-card">
+  <div class="form">
+    <form
+      class="login-form"
+      (submit)="onSignup(signupForm)"
+      #signupForm="ngForm"
+    >
+      <input
+        type="text"
+        placeholder="Full Name"
+        name="fullname"
+        ngModel
+        #usernameInput="ngModel"
+      />
+      <input
+        type="email"
+        placeholder="email"
+        name="email"
+        ngModel
+        #emailInput="ngModel"
+      />
+      <input
+        type="password"
+        placeholder="password"
+        name="password"
+        autocomplete="current-password"
+        ngModel
+        #passwordInput="ngModel"
+      />
+      <button type="submit">REGISTER</button>
+      <p class="message">
+        Already have an account?<a routerLink="/login">Log in!</a>
+      </p>
+    </form>
+  </div>
+</div>

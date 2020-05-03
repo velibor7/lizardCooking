@@ -4,8 +4,11 @@
     <button class="button" routerLink="/submitrecipe">SUBMIT A RECIPE</button>
     <nav>
         <ul>
-            <li><a routerLink="">MY RECIPES</a></li>
-            <li><a routerLink="">YOUR RECIPES</a></li>
+            <button routerLink="/login">LOGIN</button>
+            <button routerLink="/signup">SIGN UP</button>
+            <button (click)="onLogout()">LOGOUT</button>
+           <!-- <li><a routerLink="">MY RECIPES</a></li>
+            <li><a routerLink="">YOUR RECIPES</a></li> -->
         </ul>
     </nav>
 </div>
