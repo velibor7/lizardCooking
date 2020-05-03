@@ -1,4 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
 .recipe-item-card {
+  font-family: "Montserrat", sans-serif;
   width: 40%;
   background-color: red;
   display: flex;
@@ -6,10 +8,12 @@
 }
 
 .title {
+  font-family: "Montserrat", sans-serif;
   margin: 0.4em 0em 0em 0em;
 }
 
 .author {
+  font-family: "Montserrat", sans-serif;
   font-size: 0.6em;
   color: white;
 }
@@ -17,12 +21,15 @@
 .recipe-img {
   border: 1px solid white;
   align-self: center;
-  width: 80%;
-  height: auto;
+  width: 90%;
+  overflow: hidden;
+  height: 15em;
+  object-fit: cover;
   margin-bottom: 0.9em;
 }
 
 .is-vegan {
+  font-family: "Montserrat", sans-serif;
   display: inline-flex;
   margin: 0;
   align-self: flex-end;
@@ -30,6 +37,6 @@
   border: 0 solid black;
   border-radius: 2em;
   padding: 0.5em;
-  background-color: green;
+  background-color: #00dc21;
   justify-content: flex-end;
 }

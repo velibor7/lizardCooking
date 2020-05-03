@@ -1,4 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
 .main-container {
+  font-family: "Montserrat", sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -9,4 +11,12 @@
   align-items: center;
   align-self: center;
   margin: 0 auto;
+  padding-bottom: 2em;
+  p {
+    margin: 1em;
+  }
+  .image {
+    width: 90%;
+    height: auto;
+  }
 }

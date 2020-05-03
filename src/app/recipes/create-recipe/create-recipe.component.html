@@ -6,13 +6,13 @@
   class="create-container"
 >
   <div>
-    <input formControlName="isvegan" type="checkbox" name="vegan" /><label
+    <input formControlName="isvegan" type="checkbox" name="vegan" class="checkbox" /><label
       for="vegan"
       >Vegan</label
     >
   </div>
-  <div>
-    Title:
+
+  <div class="">
     <input
       formControlName="title"
       name="title"
@@ -30,14 +30,14 @@
     formControlName="description"
     name=""
     id=""
-    cols="30"
-    rows="10"
     class="description"
     placeholder="Description"
   ></textarea>
 
   <div>
-    <button class="button" type="button" (click)="filePicker.click()">Add image</button>
+    <button class="button" type="button" (click)="filePicker.click()">
+      ADD IMAGE
+    </button>
     <input
       #filePicker
       type="file"
@@ -52,6 +52,6 @@
     <img [src]="imagePreview" alt="image preview" />
   </div>
 
-  <button type="submit" class="button">POST</button>
+  <button type="submit" class="button post-button">POST</button>
 </form>
 <!-- </div> -->

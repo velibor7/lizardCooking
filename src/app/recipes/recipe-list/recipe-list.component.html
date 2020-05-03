@@ -1,3 +1,5 @@
 <div class="main-container">
+    <!--! fix this -->
+    <div *ngIf="recipes.length == 0"> No recipes yet!</div>
     <app-recipe-item [routerLink]="['/recipes', recipeEl.id]" *ngFor="let recipeEl of recipes; let i = index" [recipe]="recipeEl" [index]="i" ></app-recipe-item>
 </div>

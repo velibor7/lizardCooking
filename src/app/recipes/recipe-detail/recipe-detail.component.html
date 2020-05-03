@@ -1,7 +1,7 @@
 <div class="main-container">
     <p>{{ recipe?.title }}</p>
     <p> {{ recipe?.description}} </p>
-    <img [src]="recipe.imagePath" alt="">
+    <img [src]="recipe.imagePath" alt="" class="image">
     <p *ngIf="recipe?.isVegan">VEGAN</p>
     <p *ngIf="!recipe?.isVegan">NOT VEGAN</p>
     <div class="options">
