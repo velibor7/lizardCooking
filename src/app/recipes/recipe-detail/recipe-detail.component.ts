@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Recipe } from "../recipe.model";
 import { RecipesService } from "../recipes.service";
 import { ActivatedRoute, Router, Params } from "@angular/router";
+import { AuthService } from "src/app/auth/auth.service";
 
 @Component({
   selector: "app-recipe-detail",
@@ -12,6 +13,7 @@ export class RecipeDetailComponent implements OnInit {
   recipe: Recipe;
   id: string;
   constructor(
+    public authService: AuthService,
     private recipeService: RecipesService,
     private route: ActivatedRoute,
     private router: Router
@@ -37,8 +39,10 @@ export class RecipeDetailComponent implements OnInit {
     // this.router.navigate(["edit"], { relativeTo: this.route });
   }
 
-  onDelete() {
-    //this.recipeService.delete(this.id);
-    //this.router.navigate(["/"]);
+  onDelete(recipeId: string) {
+    console.log(recipeId);
+    this.recipeService.deleteRecipe(recipeId).subscribe(() => {
+      this.recipeService.getRecipes();
+    });
   }
 }

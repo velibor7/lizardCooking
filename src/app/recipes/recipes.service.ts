@@ -83,5 +83,8 @@ export class RecipesService {
 
   update(i: number, newR: Recipe) {}
 
-  delete(i: number) {}
+  deleteRecipe(recipeId: string) {
+    console.log("trying to delete: " + recipeId);
+    return this.http.delete("http://localhost:3000/api/recipes/" + recipeId);
+  }
 }

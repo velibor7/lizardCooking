@@ -72,7 +72,10 @@ var RecipesService = /** @class */ (function () {
         });
     };
     RecipesService.prototype.update = function (i, newR) { };
-    RecipesService.prototype["delete"] = function (i) { };
+    RecipesService.prototype.deleteRecipe = function (recipeId) {
+        console.log("trying to delete: " + recipeId);
+        return this.http["delete"]("http://localhost:3000/api/recipes/" + recipeId);
+    };
     RecipesService = __decorate([
         core_1.Injectable({
             providedIn: "root"

@@ -124,24 +124,30 @@ router.get("/:id", function (req, res, next) {
       });
     }
   });
-});
-/*
-//* deleting single post
-router.delete("/:id", checkAuth, (req, res, next) => {
-  Post.deleteOne({ _id: req.params.id, creatorData: req.userData.userId })
-    .then((result) => {
-      console.log(result);
-      if (result.n > 0) {
-        res.status(200).json({ message: "post deleted! :)" });
-      } else {
-        res.status(401).json({ message: "not auth" });
-      }
-    })
-    .catch((err) => {
-      res.status(404).json({ message: "an error occured", error: err });
+}); //* deleting single post
+
+router.delete("/:id", checkAuth, function (req, res, next) {
+  // console.log("idk?");
+  Recipe.deleteOne({
+    _id: req.params.id,
+    creatorData: req.userData.userId
+  }).then(function (result) {
+    // console.log(result);
+    if (result.n > 0) {
+      res.status(200).json({
+        message: "post deleted! :)"
+      });
+    } else {
+      res.status(401).json({
+        message: "not auth"
+      });
+    }
+  }).catch(function (err) {
+    console.log(err);
+    res.status(404).json({
+      message: "an error occured",
+      error: err
     });
+  });
 });
-
-*/
-
 module.exports = router;

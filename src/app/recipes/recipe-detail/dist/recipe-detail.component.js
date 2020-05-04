@@ -8,7 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 var core_1 = require("@angular/core");
 var RecipeDetailComponent = /** @class */ (function () {
-    function RecipeDetailComponent(recipeService, route, router) {
+    function RecipeDetailComponent(authService, recipeService, route, router) {
+        this.authService = authService;
         this.recipeService = recipeService;
         this.route = route;
         this.router = router;
@@ -32,9 +33,12 @@ var RecipeDetailComponent = /** @class */ (function () {
     RecipeDetailComponent.prototype.onEdit = function () {
         // this.router.navigate(["edit"], { relativeTo: this.route });
     };
-    RecipeDetailComponent.prototype.onDelete = function () {
-        //this.recipeService.delete(this.id);
-        //this.router.navigate(["/"]);
+    RecipeDetailComponent.prototype.onDelete = function (recipeId) {
+        var _this = this;
+        console.log(recipeId);
+        this.recipeService.deleteRecipe(recipeId).subscribe(function () {
+            _this.recipeService.getRecipes();
+        });
     };
     RecipeDetailComponent = __decorate([
         core_1.Component({
