@@ -67,13 +67,12 @@ router.put(
   checkAuth,
   multer({ storage: storage }).single("image"),
   (req, res, next) => {
-    console.log(req);
+    //console.log(req);
     let imagePath = req.body.imagePath;
     if (req.file) {
       const url = req.protocol + "://" + req.get("host");
       imagePath = url + "/images/" + req.file.filename;
     }
-    console.log("s================");
     const recipe = new Recipe({
       _id: req.body.id,
       title: req.body.title,
@@ -90,7 +89,7 @@ router.put(
       if (result.n > 0) {
         res.status(200).json({ message: "post updated :)" });
       } else {
-        console.log("not auth");
+        //    console.log("not auth");
         res.status(401).json({ message: "not auth!" });
       }
     });

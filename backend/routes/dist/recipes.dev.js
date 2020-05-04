@@ -69,7 +69,7 @@ router.post("", checkAuth, multer({
 router.put("/:id", checkAuth, multer({
   storage: storage
 }).single("image"), function (req, res, next) {
-  console.log(req);
+  //console.log(req);
   var imagePath = req.body.imagePath;
 
   if (req.file) {
@@ -77,7 +77,6 @@ router.put("/:id", checkAuth, multer({
     imagePath = url + "/images/" + req.file.filename;
   }
 
-  console.log("s================");
   var recipe = new Recipe({
     _id: req.body.id,
     title: req.body.title,
@@ -98,7 +97,7 @@ router.put("/:id", checkAuth, multer({
         message: "post updated :)"
       });
     } else {
-      console.log("not auth");
+      //    console.log("not auth");
       res.status(401).json({
         message: "not auth!"
       });
