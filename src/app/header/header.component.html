@@ -1,12 +1,12 @@
 <div class="header-container">
     <div class="logo" routerLink="/">LizardCooking</div>
     <!-- <input  class="search" type="search" placeholder="What do you want to cook today?"> -->
-    <button class="button" routerLink="/submitrecipe">SUBMIT A RECIPE</button>
+    <button class="button-submit" routerLink="/submitrecipe">SUBMIT A RECIPE</button>
     <nav>
         <ul>
-            <button routerLink="/login">LOGIN</button>
-            <button routerLink="/signup">SIGN UP</button>
-            <button (click)="onLogout()">LOGOUT</button>
+            <button class="button" routerLink="/login">LOGIN</button>
+            <button class="button" routerLink="/signup">SIGN UP</button>
+            <button class="button" (click)="onLogout()">LOGOUT</button>
            <!-- <li><a routerLink="">MY RECIPES</a></li>
             <li><a routerLink="">YOUR RECIPES</a></li> -->
         </ul>

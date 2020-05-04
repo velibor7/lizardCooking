@@ -1,10 +1,10 @@
 <!-- <div class="recipe-item-card"> -->
     <h3 class="title"> {{recipe.title}}</h3>
     <!--? ovo fullname izgleda cita iz baze, ni sam ne znam kako -->
-    <p class="author">by {{recipe.creatorData?.fullname}} </p>
+    <p class="author">by <strong>{{recipe.creatorData?.fullname}} </strong> </p>
     <!-- <p class="description"> {{recipe.description}} </p> -->
     <img class="recipe-img" [src]="recipe?.imagePath" alt="No image">
     <p *ngIf="recipe.isVegan" class="is-vegan">VEGAN</p>
     <!--? if somebody doesn't know si their recipe vegan we shouldn't display anything size of the boxes changes, we need to fix it -->
-    <p *ngIf="!recipe.isVegan" [ngStyle]="{'background-color': 'red'}" class="is-vegan">NOT VEGAN</p>
-<!-- </div> --> 
+    <!--<p *ngIf="!recipe.isVegan" [ngStyle]="{'background-color': 'red'}" class="is-vegan">NOT VEGAN</p> -->
+<!-- </div> -->
