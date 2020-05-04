@@ -66,7 +66,7 @@ var CreateRecipeComponent = /** @class */ (function () {
             console.log("mode: edit");
             //console.log("form value: ");
             //console.log(this.form.value);
-            this.recipeService.updateRecipe(this.recipeId, this.form.value.title, this.form.value.description, this.form.value.isVegan, this.form.value.image);
+            this.recipeService.updateRecipe(this.recipeId, this.form.value.title, this.form.value.description, this.form.value.isvegan, this.form.value.image);
         }
         this.form.reset();
     };

@@ -88,6 +88,7 @@ export class RecipesService {
     isVegan: boolean,
     image: File | string
   ) {
+    //console.log(isVegan);
     let recipeData: Recipe | FormData;
     if (typeof image === "object") {
       recipeData = new FormData();
@@ -107,8 +108,7 @@ export class RecipesService {
       };
     }
 
-    console.log(recipeData);
-    // this.router.navigate(["/"]);
+    // console.log(recipeData);
     return this.http
       .put("http://localhost:3000/api/recipes/" + id, recipeData)
       .subscribe((response) => {

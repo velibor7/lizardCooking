@@ -79,7 +79,7 @@ router.put(
       title: req.body.title,
       description: req.body.description,
       imagePath: imagePath,
-      isVegan: req.body.isVegan === "true",
+      isVegan: req.body.isVegan,
       creatorData: req.userData.userId, //! this comes out of checkAuth middleware
     });
     Recipe.updateOne(

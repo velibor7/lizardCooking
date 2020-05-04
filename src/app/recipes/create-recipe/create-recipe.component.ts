@@ -82,7 +82,7 @@ export class CreateRecipeComponent implements OnInit, OnDestroy {
         this.recipeId,
         this.form.value.title,
         this.form.value.description,
-        this.form.value.isVegan,
+        this.form.value.isvegan,
         this.form.value.image
       );
     }

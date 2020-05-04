@@ -73,6 +73,7 @@ var RecipesService = /** @class */ (function () {
     };
     RecipesService.prototype.updateRecipe = function (id, title, description, isVegan, image) {
         var _this = this;
+        //console.log(isVegan);
         var recipeData;
         if (typeof image === "object") {
             recipeData = new FormData();
@@ -92,8 +93,7 @@ var RecipesService = /** @class */ (function () {
                 creatorData: null
             };
         }
-        console.log(recipeData);
-        // this.router.navigate(["/"]);
+        // console.log(recipeData);
         return this.http
             .put("http://localhost:3000/api/recipes/" + id, recipeData)
             .subscribe(function (response) {
