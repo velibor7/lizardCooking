@@ -32,9 +32,12 @@ export class CreateRecipeComponent implements OnInit, OnDestroy {
     });
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has("id")) {
+        console.log("it has edit!!");
         this.mode = "edit";
         this.recipeId = paramMap.get("id");
         this.recipeService.getRecipe(this.recipeId).subscribe((recipeData) => {
+          //console.log("recipe data: ");
+          //console.log(recipeData);
           this.recipe = {
             id: recipeData._id,
             title: recipeData.title,
@@ -61,7 +64,9 @@ export class CreateRecipeComponent implements OnInit, OnDestroy {
     if (this.form.invalid) {
       return;
     }
+
     if (this.mode === "create") {
+      console.log("mode: create");
       console.log(this.form.value.image);
       this.recipeService.add(
         this.form.value.title,
@@ -70,6 +75,9 @@ export class CreateRecipeComponent implements OnInit, OnDestroy {
         this.form.value.image
       );
     } else {
+      console.log("mode: edit");
+      //console.log("form value: ");
+      //console.log(this.form.value);
       this.recipeService.updateRecipe(
         this.recipeId,
         this.form.value.title,

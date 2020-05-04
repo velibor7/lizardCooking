@@ -72,6 +72,7 @@ var RecipesService = /** @class */ (function () {
         });
     };
     RecipesService.prototype.updateRecipe = function (id, title, description, isVegan, image) {
+        var _this = this;
         var recipeData;
         if (typeof image === "object") {
             recipeData = new FormData();
@@ -91,10 +92,17 @@ var RecipesService = /** @class */ (function () {
                 creatorData: null
             };
         }
-        this.http.put("http://localhost:3000/api/recipes/" + id, recipeData);
+        console.log(recipeData);
+        // this.router.navigate(["/"]);
+        return this.http
+            .put("http://localhost:3000/api/recipes/" + id, recipeData)
+            .subscribe(function (response) {
+            _this.router.navigate(["/"]);
+        });
     };
     RecipesService.prototype.deleteRecipe = function (recipeId) {
         console.log("trying to delete: " + recipeId);
+        // this.router.navigate(["/"]);
         return this.http["delete"]("http://localhost:3000/api/recipes/" + recipeId);
     };
     RecipesService = __decorate([

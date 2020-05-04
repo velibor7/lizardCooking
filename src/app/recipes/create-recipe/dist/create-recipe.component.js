@@ -25,9 +25,12 @@ var CreateRecipeComponent = /** @class */ (function () {
         });
         this.route.paramMap.subscribe(function (paramMap) {
             if (paramMap.has("id")) {
+                console.log("it has edit!!");
                 _this.mode = "edit";
                 _this.recipeId = paramMap.get("id");
                 _this.recipeService.getRecipe(_this.recipeId).subscribe(function (recipeData) {
+                    //console.log("recipe data: ");
+                    //console.log(recipeData);
                     _this.recipe = {
                         id: recipeData._id,
                         title: recipeData.title,
@@ -55,10 +58,14 @@ var CreateRecipeComponent = /** @class */ (function () {
             return;
         }
         if (this.mode === "create") {
+            console.log("mode: create");
             console.log(this.form.value.image);
             this.recipeService.add(this.form.value.title, this.form.value.description, this.form.value.isvegan, this.form.value.image);
         }
         else {
+            console.log("mode: edit");
+            //console.log("form value: ");
+            //console.log(this.form.value);
             this.recipeService.updateRecipe(this.recipeId, this.form.value.title, this.form.value.description, this.form.value.isVegan, this.form.value.image);
         }
         this.form.reset();

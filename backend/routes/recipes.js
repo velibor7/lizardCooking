@@ -67,27 +67,30 @@ router.put(
   checkAuth,
   multer({ storage: storage }).single("image"),
   (req, res, next) => {
+    console.log(req);
     let imagePath = req.body.imagePath;
     if (req.file) {
       const url = req.protocol + "://" + req.get("host");
       imagePath = url + "/images/" + req.file.filename;
     }
+    console.log("s================");
     const recipe = new Recipe({
       _id: req.body.id,
       title: req.body.title,
       description: req.body.description,
       imagePath: imagePath,
-      isVegan: req.body.isVegan,
+      isVegan: req.body.isVegan === "true",
       creatorData: req.userData.userId, //! this comes out of checkAuth middleware
     });
-    // console.log(post);
     Recipe.updateOne(
       { _id: req.params.id, creatorData: req.userData.userId },
-      post
+      recipe
     ).then((result) => {
+      console.log(result);
       if (result.n > 0) {
         res.status(200).json({ message: "post updated :)" });
       } else {
+        console.log("not auth");
         res.status(401).json({ message: "not auth!" });
       }
     });
@@ -132,7 +135,8 @@ router.delete("/:id", checkAuth, (req, res, next) => {
     .then((result) => {
       // console.log(result);
       if (result.n > 0) {
-        res.status(200).json({ message: "post deleted! :)" });
+        res.status(200).json({ message: "recipe deleted! :)" });
+        console.log("recipe deleted!");
       } else {
         res.status(401).json({ message: "not auth" });
       }

@@ -107,11 +107,18 @@ export class RecipesService {
       };
     }
 
-    this.http.put("http://localhost:3000/api/recipes/" + id, recipeData);
+    console.log(recipeData);
+    // this.router.navigate(["/"]);
+    return this.http
+      .put("http://localhost:3000/api/recipes/" + id, recipeData)
+      .subscribe((response) => {
+        this.router.navigate(["/"]);
+      });
   }
 
   deleteRecipe(recipeId: string) {
     console.log("trying to delete: " + recipeId);
+    // this.router.navigate(["/"]);
     return this.http.delete("http://localhost:3000/api/recipes/" + recipeId);
   }
 }

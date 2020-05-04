@@ -5,10 +5,8 @@ export class Recipe {
   title: string;
   description: string;
   imagePath: string = "";
-  // ingredients: Ingredient[];
   isVegan: boolean;
   creatorData: any;
-  // creatorData: any;
 
   constructor(t: string, d: string, v: boolean) {
     this.title = t;
