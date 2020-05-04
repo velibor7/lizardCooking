@@ -81,7 +81,34 @@ export class RecipesService {
       });
   }
 
-  update(i: number, newR: Recipe) {}
+  updateRecipe(
+    id: string,
+    title: string,
+    description: string,
+    isVegan: boolean,
+    image: File | string
+  ) {
+    let recipeData: Recipe | FormData;
+    if (typeof image === "object") {
+      recipeData = new FormData();
+      recipeData.append("id", id);
+      recipeData.append("title", title);
+      recipeData.append("description", description);
+      recipeData.append("isVegan", JSON.stringify(isVegan));
+      recipeData.append("image", image);
+    } else {
+      recipeData = {
+        id: id,
+        title: title,
+        description: description,
+        imagePath: image,
+        isVegan: isVegan,
+        creatorData: null,
+      };
+    }
+
+    this.http.put("http://localhost:3000/api/recipes/" + id, recipeData);
+  }
 
   deleteRecipe(recipeId: string) {
     console.log("trying to delete: " + recipeId);

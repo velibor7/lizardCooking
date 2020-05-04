@@ -61,7 +61,6 @@ router.post(
   }
 );
 
-/*
 //* update post
 router.put(
   "/:id",
@@ -73,14 +72,16 @@ router.put(
       const url = req.protocol + "://" + req.get("host");
       imagePath = url + "/images/" + req.file.filename;
     }
-    const post = new Post({
+    const recipe = new Recipe({
       _id: req.body.id,
-      content: req.body.content,
+      title: req.body.title,
+      description: req.body.description,
       imagePath: imagePath,
-      creatorData: req.userData.userId, //! ?!?!
+      isVegan: req.body.isVegan,
+      creatorData: req.userData.userId, //! this comes out of checkAuth middleware
     });
     // console.log(post);
-    Post.updateOne(
+    Recipe.updateOne(
       { _id: req.params.id, creatorData: req.userData.userId },
       post
     ).then((result) => {
@@ -92,7 +93,6 @@ router.put(
     });
   }
 );
-*/
 
 //* fetching all recipes
 router.get("", (req, res, next) => {

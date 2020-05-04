@@ -64,40 +64,43 @@ router.post("", checkAuth, multer({
       })
     });
   });
-});
-/*
-//* update post
-router.put(
-  "/:id",
-  checkAuth,
-  multer({ storage: storage }).single("image"),
-  (req, res, next) => {
-    let imagePath = req.body.imagePath;
-    if (req.file) {
-      const url = req.protocol + "://" + req.get("host");
-      imagePath = url + "/images/" + req.file.filename;
-    }
-    const post = new Post({
-      _id: req.body.id,
-      content: req.body.content,
-      imagePath: imagePath,
-      creatorData: req.userData.userId, //! ?!?!
-    });
-    // console.log(post);
-    Post.updateOne(
-      { _id: req.params.id, creatorData: req.userData.userId },
-      post
-    ).then((result) => {
-      if (result.n > 0) {
-        res.status(200).json({ message: "post updated :)" });
-      } else {
-        res.status(401).json({ message: "not auth!" });
-      }
-    });
+}); //* update post
+
+router.put("/:id", checkAuth, multer({
+  storage: storage
+}).single("image"), function (req, res, next) {
+  var imagePath = req.body.imagePath;
+
+  if (req.file) {
+    var url = req.protocol + "://" + req.get("host");
+    imagePath = url + "/images/" + req.file.filename;
   }
-);
-*/
-//* fetching all recipes
+
+  var recipe = new Recipe({
+    _id: req.body.id,
+    title: req.body.title,
+    description: req.body.description,
+    imagePath: imagePath,
+    isVegan: req.body.isVegan,
+    creatorData: req.userData.userId //! this comes out of checkAuth middleware
+
+  }); // console.log(post);
+
+  Recipe.updateOne({
+    _id: req.params.id,
+    creatorData: req.userData.userId
+  }, post).then(function (result) {
+    if (result.n > 0) {
+      res.status(200).json({
+        message: "post updated :)"
+      });
+    } else {
+      res.status(401).json({
+        message: "not auth!"
+      });
+    }
+  });
+}); //* fetching all recipes
 
 router.get("", function (req, res, next) {
   Recipe.find().populate("creatorData").then(function (documents) {

@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: "", component: RecipeListComponent },
   { path: "recipes/:id", component: RecipeDetailComponent },
   { path: "submitrecipe", component: CreateRecipeComponent },
+  { path: "recipes/:id/edit", component: CreateRecipeComponent },
   { path: "login", component: LoginComponent },
   { path: "signup", component: SignupComponent },
 ];

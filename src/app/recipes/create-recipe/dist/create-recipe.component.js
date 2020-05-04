@@ -10,20 +10,58 @@ var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var CreateRecipeComponent = /** @class */ (function () {
     // recipeSub: Subscription;
-    function CreateRecipeComponent(recipeService) {
+    function CreateRecipeComponent(recipeService, route) {
         this.recipeService = recipeService;
+        this.route = route;
+        this.mode = "create";
     }
     CreateRecipeComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.form = new forms_1.FormGroup({
             title: new forms_1.FormControl(null),
             description: new forms_1.FormControl(null),
             isvegan: new forms_1.FormControl(false),
             image: new forms_1.FormControl(null)
         });
+        this.route.paramMap.subscribe(function (paramMap) {
+            if (paramMap.has("id")) {
+                _this.mode = "edit";
+                _this.recipeId = paramMap.get("id");
+                _this.recipeService.getRecipe(_this.recipeId).subscribe(function (recipeData) {
+                    _this.recipe = {
+                        id: recipeData._id,
+                        title: recipeData.title,
+                        description: recipeData.description,
+                        isVegan: recipeData.isVegan,
+                        imagePath: recipeData.imagePath,
+                        creatorData: recipeData.creatorData
+                    };
+                    _this.form.setValue({
+                        title: _this.recipe.title,
+                        description: _this.recipe.description,
+                        isvegan: _this.recipe.isVegan,
+                        image: _this.recipe.imagePath
+                    });
+                });
+            }
+            else {
+                _this.mode = "create";
+                _this.recipeId = null;
+            }
+        });
     };
     CreateRecipeComponent.prototype.onSaveRecipe = function () {
-        console.log(this.form.value.image);
-        this.recipeService.add(this.form.value.title, this.form.value.description, this.form.value.isvegan, this.form.value.image);
+        if (this.form.invalid) {
+            return;
+        }
+        if (this.mode === "create") {
+            console.log(this.form.value.image);
+            this.recipeService.add(this.form.value.title, this.form.value.description, this.form.value.isvegan, this.form.value.image);
+        }
+        else {
+            this.recipeService.updateRecipe(this.recipeId, this.form.value.title, this.form.value.description, this.form.value.isVegan, this.form.value.image);
+        }
+        this.form.reset();
     };
     CreateRecipeComponent.prototype.onImagePicked = function (event) {
         var _this = this;

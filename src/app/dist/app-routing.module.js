@@ -17,6 +17,7 @@ var routes = [
     { path: "", component: recipe_list_component_1.RecipeListComponent },
     { path: "recipes/:id", component: recipe_detail_component_1.RecipeDetailComponent },
     { path: "submitrecipe", component: create_recipe_component_1.CreateRecipeComponent },
+    { path: "recipes/:id/edit", component: create_recipe_component_1.CreateRecipeComponent },
     { path: "login", component: login_component_1.LoginComponent },
     { path: "signup", component: signup_component_1.SignupComponent },
 ];

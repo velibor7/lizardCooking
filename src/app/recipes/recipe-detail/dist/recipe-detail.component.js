@@ -31,7 +31,7 @@ var RecipeDetailComponent = /** @class */ (function () {
         });
     };
     RecipeDetailComponent.prototype.onEdit = function () {
-        // this.router.navigate(["edit"], { relativeTo: this.route });
+        this.router.navigate(["edit"], { relativeTo: this.route });
     };
     RecipeDetailComponent.prototype.onDelete = function (recipeId) {
         var _this = this;

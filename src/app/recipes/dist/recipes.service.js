@@ -71,7 +71,28 @@ var RecipesService = /** @class */ (function () {
             _this.router.navigate(["/"]);
         });
     };
-    RecipesService.prototype.update = function (i, newR) { };
+    RecipesService.prototype.updateRecipe = function (id, title, description, isVegan, image) {
+        var recipeData;
+        if (typeof image === "object") {
+            recipeData = new FormData();
+            recipeData.append("id", id);
+            recipeData.append("title", title);
+            recipeData.append("description", description);
+            recipeData.append("isVegan", JSON.stringify(isVegan));
+            recipeData.append("image", image);
+        }
+        else {
+            recipeData = {
+                id: id,
+                title: title,
+                description: description,
+                imagePath: image,
+                isVegan: isVegan,
+                creatorData: null
+            };
+        }
+        this.http.put("http://localhost:3000/api/recipes/" + id, recipeData);
+    };
     RecipesService.prototype.deleteRecipe = function (recipeId) {
         console.log("trying to delete: " + recipeId);
         return this.http["delete"]("http://localhost:3000/api/recipes/" + recipeId);
