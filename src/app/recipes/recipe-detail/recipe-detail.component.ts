@@ -12,6 +12,7 @@ import { AuthService } from "src/app/auth/auth.service";
 export class RecipeDetailComponent implements OnInit {
   recipe: Recipe;
   id: string;
+  userId: string;
   constructor(
     public authService: AuthService,
     private recipeService: RecipesService,
@@ -20,6 +21,8 @@ export class RecipeDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.userId = this.authService.getUserId();
+    console.log(this.userId);
     this.route.params.subscribe((params: Params) => {
       this.id = params["id"];
       this.recipeService.getRecipe(this.id).subscribe((recipeData) => {
@@ -31,6 +34,7 @@ export class RecipeDetailComponent implements OnInit {
           imagePath: recipeData.imagePath,
           creatorData: recipeData.creatorData,
         };
+        console.log(this.recipe);
       });
     });
   }

@@ -54,7 +54,7 @@ router.post("/login", (req, res, next) => {
         token: token,
         expiresIn: 3600,
         userId: fetchedUser._id,
-        email: fetchedUser.email,
+        //? email: fetchedUser.email,
       });
     })
     .catch((err) => {

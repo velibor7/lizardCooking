@@ -13,11 +13,20 @@ var recipe_list_component_1 = require("./recipes/recipe-list/recipe-list.compone
 var recipe_detail_component_1 = require("./recipes/recipe-detail/recipe-detail.component");
 var login_component_1 = require("./auth/login/login.component");
 var signup_component_1 = require("./auth/signup/signup.component");
+var auth_guard_1 = require("./auth/auth.guard");
 var routes = [
     { path: "", component: recipe_list_component_1.RecipeListComponent },
     { path: "recipes/:id", component: recipe_detail_component_1.RecipeDetailComponent },
-    { path: "submitrecipe", component: create_recipe_component_1.CreateRecipeComponent },
-    { path: "recipes/:id/edit", component: create_recipe_component_1.CreateRecipeComponent },
+    {
+        path: "submitrecipe",
+        component: create_recipe_component_1.CreateRecipeComponent,
+        canActivate: [auth_guard_1.AuthGuard]
+    },
+    {
+        path: "recipes/:id/edit",
+        component: create_recipe_component_1.CreateRecipeComponent,
+        canActivate: [auth_guard_1.AuthGuard]
+    },
     { path: "login", component: login_component_1.LoginComponent },
     { path: "signup", component: signup_component_1.SignupComponent },
 ];
@@ -27,7 +36,8 @@ var AppRoutingModule = /** @class */ (function () {
     AppRoutingModule = __decorate([
         core_1.NgModule({
             imports: [router_1.RouterModule.forRoot(routes)],
-            exports: [router_1.RouterModule]
+            exports: [router_1.RouterModule],
+            providers: [auth_guard_1.AuthGuard]
         })
     ], AppRoutingModule);
     return AppRoutingModule;

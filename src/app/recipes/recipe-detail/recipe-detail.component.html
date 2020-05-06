@@ -5,7 +5,7 @@
     <img [src]="recipe?.imagePath" alt="" class="image">
     <p *ngIf="recipe?.isVegan">VEGAN</p>
     <p *ngIf="!recipe?.isVegan">NOT VEGAN</p>
-    <div class="options">
+    <div class="options" *ngIf="userId === recipe?.creatorData._id">
         <button (click)="onEdit()">EDIT</button>
         <button (click)="onDelete(recipe.id)">DELETE</button>
     </div>

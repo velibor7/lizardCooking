@@ -16,6 +16,8 @@ var RecipeDetailComponent = /** @class */ (function () {
     }
     RecipeDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.userId = this.authService.getUserId();
+        console.log(this.userId);
         this.route.params.subscribe(function (params) {
             _this.id = params["id"];
             _this.recipeService.getRecipe(_this.id).subscribe(function (recipeData) {
@@ -27,6 +29,7 @@ var RecipeDetailComponent = /** @class */ (function () {
                     imagePath: recipeData.imagePath,
                     creatorData: recipeData.creatorData
                 };
+                console.log(_this.recipe);
             });
         });
     };
