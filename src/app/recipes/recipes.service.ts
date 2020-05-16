@@ -119,6 +119,10 @@ export class RecipesService {
   deleteRecipe(recipeId: string) {
     console.log("trying to delete: " + recipeId);
     // this.router.navigate(["/"]);
-    return this.http.delete("http://localhost:3000/api/recipes/" + recipeId);
+    return this.http
+      .delete("http://localhost:3000/api/recipes/" + recipeId)
+      .subscribe(() => {
+        this.router.navigate(["/"]);
+      });
   }
 }
